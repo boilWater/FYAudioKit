@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'FYAudioKit_Example' do
+  pod 'FYAudioKit', :path => '../'
+
+  target 'FYAudioKit_Tests' do
+    inherit! :search_paths
+
+    pod 'Kiwi'
+  end
+end
