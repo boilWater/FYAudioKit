@@ -1,8 +1,8 @@
 //
 //  FYViewController.h
-//  FYAudioKit
+//  FYCameraKit
 //
-//  Created by boilwater on 07/16/2017.
+//  Created by boilwater on 06/23/2017.
 //  Copyright (c) 2017 boilwater. All rights reserved.
 //
 
