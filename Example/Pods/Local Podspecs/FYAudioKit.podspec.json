@@ -1,0 +1,22 @@
+{
+  "name": "FYAudioKit",
+  "version": "0.1.0",
+  "summary": "A short description of FYAudioKit.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/boilwater/FYAudioKit",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "boilwater": "1549793329@qq.com"
+  },
+  "source": {
+    "git": "https://github.com/boilwater/FYAudioKit.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "FYAudioKit/Classes/**/*"
+}

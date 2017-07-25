@@ -1,0 +1,6 @@
+framework module Pods_FYAudioKit_Example {
+  umbrella header "Pods-FYAudioKit_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}

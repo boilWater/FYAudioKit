@@ -1,0 +1,6 @@
+framework module Pods_FYAudioKit_Tests {
+  umbrella header "Pods-FYAudioKit_Tests-umbrella.h"
+
+  export *
+  module * { export * }
+}

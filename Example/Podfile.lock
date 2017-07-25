@@ -1,0 +1,19 @@
+PODS:
+  - FYAudioKit (0.1.0)
+  - Kiwi (2.4.0)
+
+DEPENDENCIES:
+  - FYAudioKit (from `../`)
+  - Kiwi
+
+EXTERNAL SOURCES:
+  FYAudioKit:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  FYAudioKit: 8762e9e51ec60e185f68b7735f152f30b24d4822
+  Kiwi: f49c9d54b28917df5928fe44968a39ed198cb8a8
+
+PODFILE CHECKSUM: 48d80d179611557caa18d27fb15d10175301e995
+
+COCOAPODS: 1.2.1

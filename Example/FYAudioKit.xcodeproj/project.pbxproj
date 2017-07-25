@@ -22,6 +22,8 @@
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
+		AEA11E5D1F2743DB009C35FE /* FYAVFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AEA11E5C1F2743DB009C35FE /* FYAVFViewController.m */; };
+		AEA11E601F274401009C35FE /* FYATBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AEA11E5F1F274401009C35FE /* FYATBViewController.m */; };
 		B3FDE450C933006AD02961B8 /* Pods_FYAudioKit_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FDCF48379E1207FD1F84EE0 /* Pods_FYAudioKit_Tests.framework */; };
 		D25FEA213BCFBD99B1DD104C /* Pods_FYAudioKit_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EBD4F95B32657FE0D428E7D /* Pods_FYAudioKit_Example.framework */; };
 /* End PBXBuildFile section */
@@ -39,9 +41,9 @@
 /* Begin PBXFileReference section */
 		0FCF834DCA5FE3E41C1C3EA3 /* Pods-FYAudioKit_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FYAudioKit_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FYAudioKit_Tests/Pods-FYAudioKit_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		0FDCF48379E1207FD1F84EE0 /* Pods_FYAudioKit_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FYAudioKit_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		15CAA0B8490F93DD944AB3B8 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		15CAA0B8490F93DD944AB3B8 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		1A6A32AF544552207BEDFD11 /* Pods-FYAudioKit_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FYAudioKit_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-FYAudioKit_Example/Pods-FYAudioKit_Example.release.xcconfig"; sourceTree = "<group>"; };
-		2B71631B11937808B113C46A /* FYAudioKit.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = FYAudioKit.podspec; path = ../FYAudioKit.podspec; sourceTree = "<group>"; };
+		2B71631B11937808B113C46A /* FYAudioKit.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = FYAudioKit.podspec; path = ../FYAudioKit.podspec; sourceTree = "<group>"; };
 		4EBD4F95B32657FE0D428E7D /* Pods_FYAudioKit_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FYAudioKit_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58A195388D20070C39A /* FYAudioKit_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FYAudioKit_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -62,9 +64,13 @@
 		6003F5B9195388D20070C39A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6003F5BB195388D20070C39A /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
-		7126CA507F0A348925C9CE6F /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		7126CA507F0A348925C9CE6F /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		71719F9E1E33DC2100824A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		AEA11E5B1F2743DB009C35FE /* FYAVFViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FYAVFViewController.h; sourceTree = "<group>"; };
+		AEA11E5C1F2743DB009C35FE /* FYAVFViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FYAVFViewController.m; sourceTree = "<group>"; };
+		AEA11E5E1F274401009C35FE /* FYATBViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FYATBViewController.h; sourceTree = "<group>"; };
+		AEA11E5F1F274401009C35FE /* FYATBViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FYATBViewController.m; sourceTree = "<group>"; };
 		AF564A7BED14FA2428D3EDD5 /* Pods-FYAudioKit_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FYAudioKit_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FYAudioKit_Tests/Pods-FYAudioKit_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		FC0C0C7E6124E3C2F9DF3A26 /* Pods-FYAudioKit_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FYAudioKit_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FYAudioKit_Example/Pods-FYAudioKit_Example.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -132,13 +138,11 @@
 		6003F593195388D20070C39A /* Example for FYAudioKit */ = {
 			isa = PBXGroup;
 			children = (
-				6003F59C195388D20070C39A /* FYAppDelegate.h */,
-				6003F59D195388D20070C39A /* FYAppDelegate.m */,
+				AEA11E651F274CEF009C35FE /* FYAudioKit */,
+				AEA11E641F274CC6009C35FE /* Utiliies */,
+				AEA11E631F274CB4009C35FE /* Resource */,
 				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
-				6003F5A5195388D20070C39A /* FYViewController.h */,
-				6003F5A6195388D20070C39A /* FYViewController.m */,
 				71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */,
-				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
 			);
 			name = "Example for FYAudioKit";
@@ -148,6 +152,7 @@
 		6003F594195388D20070C39A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F595195388D20070C39A /* FYAudioKit-Info.plist */,
 				6003F596195388D20070C39A /* InfoPlist.strings */,
 				6003F599195388D20070C39A /* main.m */,
@@ -194,6 +199,75 @@
 				0FCF834DCA5FE3E41C1C3EA3 /* Pods-FYAudioKit_Tests.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		AEA11E591F274391009C35FE /* AVFoundation */ = {
+			isa = PBXGroup;
+			children = (
+				AEA11E5B1F2743DB009C35FE /* FYAVFViewController.h */,
+				AEA11E5C1F2743DB009C35FE /* FYAVFViewController.m */,
+			);
+			path = AVFoundation;
+			sourceTree = "<group>";
+		};
+		AEA11E5A1F2743A3009C35FE /* AudioToolBox */ = {
+			isa = PBXGroup;
+			children = (
+				AEA11E5E1F274401009C35FE /* FYATBViewController.h */,
+				AEA11E5F1F274401009C35FE /* FYATBViewController.m */,
+			);
+			path = AudioToolBox;
+			sourceTree = "<group>";
+		};
+		AEA11E631F274CB4009C35FE /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		AEA11E641F274CC6009C35FE /* Utiliies */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utiliies;
+			sourceTree = "<group>";
+		};
+		AEA11E651F274CEF009C35FE /* FYAudioKit */ = {
+			isa = PBXGroup;
+			children = (
+				6003F59C195388D20070C39A /* FYAppDelegate.h */,
+				6003F59D195388D20070C39A /* FYAppDelegate.m */,
+				AEA11E681F274E96009C35FE /* BaseClass */,
+				AEA11E661F274DD9009C35FE /* Modules */,
+			);
+			path = FYAudioKit;
+			sourceTree = "<group>";
+		};
+		AEA11E661F274DD9009C35FE /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				AEA11E671F274E58009C35FE /* MainView */,
+				AEA11E5A1F2743A3009C35FE /* AudioToolBox */,
+				AEA11E591F274391009C35FE /* AVFoundation */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		AEA11E671F274E58009C35FE /* MainView */ = {
+			isa = PBXGroup;
+			children = (
+				6003F5A5195388D20070C39A /* FYViewController.h */,
+				6003F5A6195388D20070C39A /* FYViewController.m */,
+			);
+			path = MainView;
+			sourceTree = "<group>";
+		};
+		AEA11E681F274E96009C35FE /* BaseClass */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = BaseClass;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -250,6 +324,9 @@
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = boilwater;
 				TargetAttributes = {
+					6003F589195388D20070C39A = {
+						DevelopmentTeam = G583SJY324;
+					};
 					6003F5AD195388D20070C39A = {
 						TestTargetID = 6003F589195388D20070C39A;
 					};
@@ -396,7 +473,9 @@
 			files = (
 				6003F59E195388D20070C39A /* FYAppDelegate.m in Sources */,
 				6003F5A7195388D20070C39A /* FYViewController.m in Sources */,
+				AEA11E601F274401009C35FE /* FYATBViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
+				AEA11E5D1F2743DB009C35FE /* FYAVFViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -524,6 +603,7 @@
 			baseConfigurationReference = FC0C0C7E6124E3C2F9DF3A26 /* Pods-FYAudioKit_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = G583SJY324;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FYAudioKit/FYAudioKit-Prefix.pch";
 				INFOPLIST_FILE = "FYAudioKit/FYAudioKit-Info.plist";
@@ -539,6 +619,7 @@
 			baseConfigurationReference = 1A6A32AF544552207BEDFD11 /* Pods-FYAudioKit_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = G583SJY324;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FYAudioKit/FYAudioKit-Prefix.pch";
 				INFOPLIST_FILE = "FYAudioKit/FYAudioKit-Info.plist";

@@ -1,0 +1,6 @@
+framework module FYAudioKit {
+  umbrella header "FYAudioKit-umbrella.h"
+
+  export *
+  module * { export * }
+}
