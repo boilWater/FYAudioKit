@@ -22,6 +22,11 @@
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
+		AE351A871F28345800EE1147 /* FYBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE351A861F28345800EE1147 /* FYBaseViewController.m */; };
+		AE351A8C1F283BE500EE1147 /* FYTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE351A8B1F283BE500EE1147 /* FYTopView.m */; };
+		AE351A8F1F283C1400EE1147 /* FYSoundCurveView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE351A8E1F283C1400EE1147 /* FYSoundCurveView.m */; };
+		AE351A941F28852C00EE1147 /* FYMemoTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE351A931F28852C00EE1147 /* FYMemoTableView.m */; };
+		AE351A971F28895100EE1147 /* FYRecordEditView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE351A961F28895100EE1147 /* FYRecordEditView.m */; };
 		AEA11E5D1F2743DB009C35FE /* FYAVFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AEA11E5C1F2743DB009C35FE /* FYAVFViewController.m */; };
 		AEA11E601F274401009C35FE /* FYATBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AEA11E5F1F274401009C35FE /* FYATBViewController.m */; };
 		B3FDE450C933006AD02961B8 /* Pods_FYAudioKit_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FDCF48379E1207FD1F84EE0 /* Pods_FYAudioKit_Tests.framework */; };
@@ -67,6 +72,17 @@
 		7126CA507F0A348925C9CE6F /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		71719F9E1E33DC2100824A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		AE351A851F28345800EE1147 /* FYBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FYBaseViewController.h; sourceTree = "<group>"; };
+		AE351A861F28345800EE1147 /* FYBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FYBaseViewController.m; sourceTree = "<group>"; };
+		AE351A8A1F283BE500EE1147 /* FYTopView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FYTopView.h; sourceTree = "<group>"; };
+		AE351A8B1F283BE500EE1147 /* FYTopView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FYTopView.m; sourceTree = "<group>"; };
+		AE351A8D1F283C1400EE1147 /* FYSoundCurveView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FYSoundCurveView.h; sourceTree = "<group>"; };
+		AE351A8E1F283C1400EE1147 /* FYSoundCurveView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FYSoundCurveView.m; sourceTree = "<group>"; };
+		AE351A911F2841DD00EE1147 /* CommonConstant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonConstant.h; sourceTree = "<group>"; };
+		AE351A921F28852C00EE1147 /* FYMemoTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FYMemoTableView.h; sourceTree = "<group>"; };
+		AE351A931F28852C00EE1147 /* FYMemoTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FYMemoTableView.m; sourceTree = "<group>"; };
+		AE351A951F28895100EE1147 /* FYRecordEditView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FYRecordEditView.h; sourceTree = "<group>"; };
+		AE351A961F28895100EE1147 /* FYRecordEditView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FYRecordEditView.m; sourceTree = "<group>"; };
 		AEA11E5B1F2743DB009C35FE /* FYAVFViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FYAVFViewController.h; sourceTree = "<group>"; };
 		AEA11E5C1F2743DB009C35FE /* FYAVFViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FYAVFViewController.m; sourceTree = "<group>"; };
 		AEA11E5E1F274401009C35FE /* FYATBViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FYATBViewController.h; sourceTree = "<group>"; };
@@ -201,6 +217,39 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		AE351A881F283B8400EE1147 /* BaseViewController */ = {
+			isa = PBXGroup;
+			children = (
+				AE351A891F283BA700EE1147 /* ConfigurationView */,
+				AE351A851F28345800EE1147 /* FYBaseViewController.h */,
+				AE351A861F28345800EE1147 /* FYBaseViewController.m */,
+			);
+			path = BaseViewController;
+			sourceTree = "<group>";
+		};
+		AE351A891F283BA700EE1147 /* ConfigurationView */ = {
+			isa = PBXGroup;
+			children = (
+				AE351A8A1F283BE500EE1147 /* FYTopView.h */,
+				AE351A8B1F283BE500EE1147 /* FYTopView.m */,
+				AE351A8D1F283C1400EE1147 /* FYSoundCurveView.h */,
+				AE351A8E1F283C1400EE1147 /* FYSoundCurveView.m */,
+				AE351A921F28852C00EE1147 /* FYMemoTableView.h */,
+				AE351A931F28852C00EE1147 /* FYMemoTableView.m */,
+				AE351A951F28895100EE1147 /* FYRecordEditView.h */,
+				AE351A961F28895100EE1147 /* FYRecordEditView.m */,
+			);
+			path = ConfigurationView;
+			sourceTree = "<group>";
+		};
+		AE351A901F28413E00EE1147 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				AE351A911F2841DD00EE1147 /* CommonConstant.h */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
 		AEA11E591F274391009C35FE /* AVFoundation */ = {
 			isa = PBXGroup;
 			children = (
@@ -229,6 +278,7 @@
 		AEA11E641F274CC6009C35FE /* Utiliies */ = {
 			isa = PBXGroup;
 			children = (
+				AE351A901F28413E00EE1147 /* Constants */,
 			);
 			path = Utiliies;
 			sourceTree = "<group>";
@@ -266,6 +316,7 @@
 		AEA11E681F274E96009C35FE /* BaseClass */ = {
 			isa = PBXGroup;
 			children = (
+				AE351A881F283B8400EE1147 /* BaseViewController */,
 			);
 			path = BaseClass;
 			sourceTree = "<group>";
@@ -321,7 +372,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = FY;
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = boilwater;
 				TargetAttributes = {
 					6003F589195388D20070C39A = {
@@ -471,8 +522,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE351A971F28895100EE1147 /* FYRecordEditView.m in Sources */,
+				AE351A8F1F283C1400EE1147 /* FYSoundCurveView.m in Sources */,
+				AE351A8C1F283BE500EE1147 /* FYTopView.m in Sources */,
 				6003F59E195388D20070C39A /* FYAppDelegate.m in Sources */,
 				6003F5A7195388D20070C39A /* FYViewController.m in Sources */,
+				AE351A871F28345800EE1147 /* FYBaseViewController.m in Sources */,
+				AE351A941F28852C00EE1147 /* FYMemoTableView.m in Sources */,
 				AEA11E601F274401009C35FE /* FYATBViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 				AEA11E5D1F2743DB009C35FE /* FYAVFViewController.m in Sources */,
@@ -533,19 +589,30 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -573,18 +640,29 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;

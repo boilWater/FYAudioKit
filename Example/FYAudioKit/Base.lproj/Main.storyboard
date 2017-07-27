@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.14"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -21,65 +20,10 @@
                     <view key="view" contentMode="scaleToFill" id="TpU-gO-2f1">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="2sf-Km-6Xl">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" selectionStyle="default" indentationWidth="10" rowHeight="40" id="3Sd-mW-7RU" userLabel="FYRecordStyleCell" customClass="FYRecordStyleCell">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="40"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3Sd-mW-7RU" id="fTZ-il-TtS">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="39.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6tU-Xi-MaO">
-                                                    <rect key="frame" x="56" y="10" width="262" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="23"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="6tU-Xi-MaO" firstAttribute="leading" secondItem="fTZ-il-TtS" secondAttribute="leadingMargin" constant="48" id="OAQ-6l-z8X"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="6tU-Xi-MaO" secondAttribute="trailing" constant="49" id="XWK-cM-Lx3"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="6tU-Xi-MaO" secondAttribute="bottom" constant="0.5" id="egr-ZO-AZV"/>
-                                                <constraint firstItem="6tU-Xi-MaO" firstAttribute="top" secondItem="fTZ-il-TtS" secondAttribute="topMargin" constant="2" id="vIN-n1-GZJ"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="memoName" destination="6tU-Xi-MaO" id="xqm-6Y-IIs"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="whP-gf-Uak" id="mCb-GS-abh"/>
-                                    <outlet property="delegate" destination="whP-gf-Uak" id="ofG-kl-Vcn"/>
-                                </connections>
-                            </tableView>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mj0-TR-l2X">
-                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                                <items>
-                                    <navigationItem title="FYAudioKit" id="yGg-HQ-zdD"/>
-                                </items>
-                            </navigationBar>
-                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="mj0-TR-l2X" firstAttribute="top" secondItem="uEw-UM-LJ8" secondAttribute="bottom" id="5HK-qJ-0Uz"/>
-                            <constraint firstAttribute="trailing" secondItem="2sf-Km-6Xl" secondAttribute="trailing" id="Ja4-RD-Otd"/>
-                            <constraint firstAttribute="trailing" secondItem="mj0-TR-l2X" secondAttribute="trailing" id="LCI-jg-kWb"/>
-                            <constraint firstItem="mj0-TR-l2X" firstAttribute="leading" secondItem="TpU-gO-2f1" secondAttribute="leading" id="M2Q-YF-MU5"/>
-                            <constraint firstItem="2sf-Km-6Xl" firstAttribute="leading" secondItem="TpU-gO-2f1" secondAttribute="leading" id="RYQ-Mb-qjm"/>
-                            <constraint firstItem="Mvr-aV-6Um" firstAttribute="top" secondItem="2sf-Km-6Xl" secondAttribute="bottom" id="ex4-RA-UhI"/>
-                            <constraint firstItem="2sf-Km-6Xl" firstAttribute="top" secondItem="mj0-TR-l2X" secondAttribute="bottom" id="ht2-6x-EJW"/>
-                        </constraints>
                     </view>
                     <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
-                    <connections>
-                        <outlet property="recordStyleTableView" destination="2sf-Km-6Xl" id="sWC-8C-clp"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tc2-Qw-aMS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

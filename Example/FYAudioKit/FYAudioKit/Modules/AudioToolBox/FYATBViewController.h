@@ -6,8 +6,8 @@
 //  Copyright © 2017年 boilwater. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "FYBaseViewController.h"
 
-@interface FYATBViewController : UIViewController
+@interface FYATBViewController : FYBaseViewController
 
 @end
