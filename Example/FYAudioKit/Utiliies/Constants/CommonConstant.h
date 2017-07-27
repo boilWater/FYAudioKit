@@ -28,7 +28,7 @@
 #define HEIGHTVIEW(view) (view.bounds.size.height)
 #define WIDTHVIEW(view) (view.bounds.size.width)
 
-#define TopPositionView(view) (view.frame.origin.y)
+#define TopPositionView(view)    (view.frame.origin.y)
 #define BottomPositionView(view) ((view.frame.origin.y)+(view.bounds.size.height))
-#define LeftPositionView(view) (view.frame.origin.x)
-#define RightPositionView(view) ((view.frame.origin.x)+(view.bounds.size.width))
+#define LeftPositionView(view)   (view.frame.origin.x)
+#define RightPositionView(view)  ((view.frame.origin.x)+(view.bounds.size.width))

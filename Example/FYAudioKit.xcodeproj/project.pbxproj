@@ -22,6 +22,8 @@
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
+		AE13EC381F2987DD008201A2 /* FYMemoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AE13EC371F2987DD008201A2 /* FYMemoModel.m */; };
+		AE13EC3C1F29C101008201A2 /* FYAVFAudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AE13EC3B1F29C101008201A2 /* FYAVFAudioManager.m */; };
 		AE351A871F28345800EE1147 /* FYBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE351A861F28345800EE1147 /* FYBaseViewController.m */; };
 		AE351A8C1F283BE500EE1147 /* FYTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE351A8B1F283BE500EE1147 /* FYTopView.m */; };
 		AE351A8F1F283C1400EE1147 /* FYSoundCurveView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE351A8E1F283C1400EE1147 /* FYSoundCurveView.m */; };
@@ -72,6 +74,10 @@
 		7126CA507F0A348925C9CE6F /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		71719F9E1E33DC2100824A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		AE13EC361F2987DD008201A2 /* FYMemoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FYMemoModel.h; sourceTree = "<group>"; };
+		AE13EC371F2987DD008201A2 /* FYMemoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FYMemoModel.m; sourceTree = "<group>"; };
+		AE13EC3A1F29C101008201A2 /* FYAVFAudioManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FYAVFAudioManager.h; sourceTree = "<group>"; };
+		AE13EC3B1F29C101008201A2 /* FYAVFAudioManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FYAVFAudioManager.m; sourceTree = "<group>"; };
 		AE351A851F28345800EE1147 /* FYBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FYBaseViewController.h; sourceTree = "<group>"; };
 		AE351A861F28345800EE1147 /* FYBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FYBaseViewController.m; sourceTree = "<group>"; };
 		AE351A8A1F283BE500EE1147 /* FYTopView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FYTopView.h; sourceTree = "<group>"; };
@@ -217,6 +223,32 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		AE13EC341F29877B008201A2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				AE13EC351F298788008201A2 /* MemoModel */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		AE13EC351F298788008201A2 /* MemoModel */ = {
+			isa = PBXGroup;
+			children = (
+				AE13EC361F2987DD008201A2 /* FYMemoModel.h */,
+				AE13EC371F2987DD008201A2 /* FYMemoModel.m */,
+			);
+			path = MemoModel;
+			sourceTree = "<group>";
+		};
+		AE13EC391F29BB37008201A2 /* AudioManager */ = {
+			isa = PBXGroup;
+			children = (
+				AE13EC3A1F29C101008201A2 /* FYAVFAudioManager.h */,
+				AE13EC3B1F29C101008201A2 /* FYAVFAudioManager.m */,
+			);
+			path = AudioManager;
+			sourceTree = "<group>";
+		};
 		AE351A881F283B8400EE1147 /* BaseViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -250,22 +282,22 @@
 			path = Constants;
 			sourceTree = "<group>";
 		};
-		AEA11E591F274391009C35FE /* AVFoundation */ = {
+		AEA11E591F274391009C35FE /* AVFoundationView */ = {
 			isa = PBXGroup;
 			children = (
 				AEA11E5B1F2743DB009C35FE /* FYAVFViewController.h */,
 				AEA11E5C1F2743DB009C35FE /* FYAVFViewController.m */,
 			);
-			path = AVFoundation;
+			path = AVFoundationView;
 			sourceTree = "<group>";
 		};
-		AEA11E5A1F2743A3009C35FE /* AudioToolBox */ = {
+		AEA11E5A1F2743A3009C35FE /* AVToolBoxVIew */ = {
 			isa = PBXGroup;
 			children = (
 				AEA11E5E1F274401009C35FE /* FYATBViewController.h */,
 				AEA11E5F1F274401009C35FE /* FYATBViewController.m */,
 			);
-			path = AudioToolBox;
+			path = AVToolBoxVIew;
 			sourceTree = "<group>";
 		};
 		AEA11E631F274CB4009C35FE /* Resource */ = {
@@ -278,6 +310,7 @@
 		AEA11E641F274CC6009C35FE /* Utiliies */ = {
 			isa = PBXGroup;
 			children = (
+				AE13EC391F29BB37008201A2 /* AudioManager */,
 				AE351A901F28413E00EE1147 /* Constants */,
 			);
 			path = Utiliies;
@@ -297,9 +330,10 @@
 		AEA11E661F274DD9009C35FE /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				AE13EC341F29877B008201A2 /* Model */,
 				AEA11E671F274E58009C35FE /* MainView */,
-				AEA11E5A1F2743A3009C35FE /* AudioToolBox */,
-				AEA11E591F274391009C35FE /* AVFoundation */,
+				AEA11E5A1F2743A3009C35FE /* AVToolBoxVIew */,
+				AEA11E591F274391009C35FE /* AVFoundationView */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -523,11 +557,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				AE351A971F28895100EE1147 /* FYRecordEditView.m in Sources */,
+				AE13EC381F2987DD008201A2 /* FYMemoModel.m in Sources */,
 				AE351A8F1F283C1400EE1147 /* FYSoundCurveView.m in Sources */,
 				AE351A8C1F283BE500EE1147 /* FYTopView.m in Sources */,
 				6003F59E195388D20070C39A /* FYAppDelegate.m in Sources */,
 				6003F5A7195388D20070C39A /* FYViewController.m in Sources */,
 				AE351A871F28345800EE1147 /* FYBaseViewController.m in Sources */,
+				AE13EC3C1F29C101008201A2 /* FYAVFAudioManager.m in Sources */,
 				AE351A941F28852C00EE1147 /* FYMemoTableView.m in Sources */,
 				AEA11E601F274401009C35FE /* FYATBViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
