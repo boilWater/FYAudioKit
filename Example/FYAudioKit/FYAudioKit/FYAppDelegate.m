@@ -13,10 +13,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
     AVAudioSession *session = [AVAudioSession sharedInstance];
     NSError *error;
-    if (![session setCategory:AVAudioSessionCategoryPlayback error:&error]) {
+    if (![session setCategory:AVAudioSessionCategoryPlayAndRecord error:&error]) {
         
     }
     if (![session setActive:YES error:&error]) {

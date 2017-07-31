@@ -23,26 +23,32 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        NSString *tempDir = NSTemporaryDirectory();
-        NSURL *fileUrl =[NSURL fileURLWithPath:[tempDir stringByAppendingPathComponent:@"fyaudiomemo.caf"]];
-        NSDictionary *setting = @{AVFormatIDKey:@(kAudioFormatAppleIMA4),
-                                  AVSampleRateKey:@44100.0f,
-                                  AVNumberOfChannelsKey:@1,
-                                  AVEncoderBitDepthHintKey:@16,
-                                  AVEncoderAudioQualityKey:@(AVAudioQualityHigh)
-                                  };
-        NSError *error = nil;
-        self.recorder = [[AVAudioRecorder alloc] initWithURL:fileUrl settings:setting error:&error];
-        if (self.recorder) {
-            self.recorder.delegate = self;
-            self.recorder.meteringEnabled = YES;
-            [self.recorder prepareToRecord];
-        }
+        [self configuration];
     }
     return self;
 }
 
-#pragma mark - public Methods
+#pragma mark - Configuration Paramters
+
+- (void)configuration {
+    NSString *tempDir = NSTemporaryDirectory();
+    NSURL *fileUrl =[NSURL fileURLWithPath:[tempDir stringByAppendingPathComponent:@"fyaudiomemo.caf"]];
+    NSDictionary *setting = @{AVFormatIDKey:@(kAudioFormatAppleIMA4),
+                              AVSampleRateKey:@44100.0f,
+                              AVNumberOfChannelsKey:@1,
+                              AVEncoderBitDepthHintKey:@16,
+                              AVEncoderAudioQualityKey:@(AVAudioQualityHigh)
+                              };
+    NSError *error = nil;
+    self.recorder = [[AVAudioRecorder alloc] initWithURL:fileUrl settings:setting error:&error];
+    if (self.recorder) {
+        self.recorder.delegate = self;
+        self.recorder.meteringEnabled = YES;
+        [self.recorder prepareToRecord];
+    }
+}
+
+#pragma mark - Public Methods
 
 - (BOOL)record {
     if (!self.recorder.isRecording) {
@@ -127,7 +133,7 @@
     return [NSString stringWithFormat:format, hours, minutes, seconds];
 }
 
-#pragma mark - Document dictionary
+#pragma mark - Document Dictionary
 
 - (NSString *)documentDictionary {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
