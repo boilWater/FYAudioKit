@@ -10,9 +10,17 @@
 #import <AVFoundation/AVFAudio.h>
 #import "FYMemoModel.h"
 
+typedef NS_ENUM(NSInteger, FYAudioRecordSetupResult) {
+    FYAudioRecordSetupResultSucess,
+    FYAudioRecordSetupResultNotAuthorized,
+    FYAudioRecordSetupResultConfigurationFiled
+};
+
 @interface FYAVFAudioManager ()<AVAudioRecorderDelegate, AVAudioPlayerDelegate>
 
 @property (strong, nonatomic) AVAudioRecorder *recorder;
+@property (nonatomic) FYAudioRecordSetupResult recordSetupResult;
+
 @property (strong, nonatomic) AVAudioPlayer *player;
 @property (strong, nonatomic) FYAVFAudioManagerStopCompletionHandler completionHandler;
 
@@ -24,6 +32,7 @@
     self = [super init];
     if (self) {
         [self configuration];
+        [self addObserve];
     }
     return self;
 }
@@ -31,6 +40,7 @@
 #pragma mark - Configuration Paramters
 
 - (void)configuration {
+    self.recordSetupResult = FYAudioRecordSetupResultSucess;
     NSString *tempDir = NSTemporaryDirectory();
     NSURL *fileUrl =[NSURL fileURLWithPath:[tempDir stringByAppendingPathComponent:@"fyaudiomemo.caf"]];
     NSDictionary *setting = @{AVFormatIDKey:@(kAudioFormatAppleIMA4),
@@ -39,12 +49,37 @@
                               AVEncoderBitDepthHintKey:@16,
                               AVEncoderAudioQualityKey:@(AVAudioQualityHigh)
                               };
-    NSError *error = nil;
-    self.recorder = [[AVAudioRecorder alloc] initWithURL:fileUrl settings:setting error:&error];
-    if (self.recorder) {
+    __block NSError *error = nil;
+    AVAudioSession *session = [AVAudioSession sharedInstance];
+    [session requestRecordPermission:^(BOOL granted) {
+        if (granted) {
+            
+        }
+        AVAudioSessionRecordPermission recordPermission = session.recordPermission;
+        switch (recordPermission) {
+            case AVAudioSessionRecordPermissionUndetermined:
+            {
+                self.recordSetupResult = FYAudioRecordSetupResultNotAuthorized;
+                break;
+            }
+            case AVAudioSessionRecordPermissionDenied:
+            {
+                self.recordSetupResult = FYAudioRecordSetupResultNotAuthorized;
+                break;
+            }
+            case AVAudioSessionRecordPermissionGranted:
+            {
+                self.recorder = [[AVAudioRecorder alloc] initWithURL:fileUrl settings:setting error:&error];
+                break;
+            }
+        }
+    }];
+    if (self.recorder && error == nil) {
         self.recorder.delegate = self;
         self.recorder.meteringEnabled = YES;
         [self.recorder prepareToRecord];
+    }else {
+        self.recordSetupResult = FYAudioRecordSetupResultConfigurationFiled;
     }
 }
 
@@ -146,6 +181,12 @@
     if (self.completionHandler) {
         self.completionHandler(flag);
     }
+}
+
+#pragma  mark - Add Notifications
+
+- (void)addObserve {
+    
 }
 
 @end
