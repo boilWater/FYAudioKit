@@ -168,11 +168,84 @@ typedef NS_ENUM(NSInteger, FYAudioRecordSetupResult) {
     return [NSString stringWithFormat:format, hours, minutes, seconds];
 }
 
-#pragma mark - Document Dictionary
+#pragma mark - Privated Method
+
+#pragma mark -Document Dictionary
 
 - (NSString *)documentDictionary {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     return paths[0];
+}
+
+#pragma mark -AudioSession Preferences
+
+- (void)configurationAudioSessionPreferences {
+    NSError *audioPreferencesError = nil;
+    BOOL result;
+    AVAudioSession *session = [AVAudioSession sharedInstance];
+    result = [session setActive:NO error:&audioPreferencesError];
+    if (!result) {
+        NSLog(@"Error : session set inaction fail");
+    }
+    
+    // I/o buffer duation 5 ms
+    NSTimeInterval bufferDuration = 0.005;
+    [session setPreferredIOBufferDuration:bufferDuration error:&audioPreferencesError];
+    if (audioPreferencesError) {
+        NSLog(@"Error : session set IOBufferDuration fail");
+    }
+    
+    // sample rate 44.1k HZ
+    double sampleRate = 44100.0;
+    [session setPreferredSampleRate:sampleRate error:&audioPreferencesError];
+    if (audioPreferencesError) {
+        NSLog(@"Error : session set sample buffer fail");
+    }
+    
+    result = [session setActive:YES error:&audioPreferencesError];
+    if (!result) {
+        NSLog(@"Error : session set restart action fail");
+        NSLog(@"The current IOBufferDuration is %0.0f sample rate is %f", session.IOBufferDuration, session.sampleRate);
+    }
+}
+
+- (void)changeMicrophoneForInputRouteWithOrientation:(NSString *)orientation {
+    NSError *audioRouteError = nil;
+    BOOL result = YES;
+    
+    AVAudioSession *session = [AVAudioSession sharedInstance];
+    NSArray<AVAudioSessionPortDescription *> *inputs = session.availableInputs;
+
+    AVAudioSessionPortDescription *builtInMicPort = nil;
+    for (AVAudioSessionPortDescription *port in inputs) {
+        if ([port.portType isEqualToString:AVAudioSessionPortBuiltInMic]) {
+            builtInMicPort = port;
+            break;
+        }
+    }
+    
+    AVAudioSessionDataSourceDescription *frontDataSource = nil;
+    for (AVAudioSessionDataSourceDescription *source in builtInMicPort.dataSources) {
+        if ([source.orientation isEqualToString: AVAudioSessionOrientationFront]) {
+            frontDataSource = source;
+            break;
+        }
+    }
+    
+    if (frontDataSource) {
+        result = [builtInMicPort setPreferredDataSource:frontDataSource error:&audioRouteError];
+    }
+    if (!result) {
+        NSLog(@"Error : Audio session port set data source fail");
+        NSLog(@"Detail error : %@", audioRouteError);
+    }
+    
+    audioRouteError = nil;
+    result = [session setPreferredInput:builtInMicPort error:&audioRouteError];
+    if (!result) {
+        NSLog(@"Error : Audio session set port fail");
+        NSLog(@"Detail error : %@", audioRouteError);
+    }
 }
 
 #pragma mark - AVAudioRecordDelegate
