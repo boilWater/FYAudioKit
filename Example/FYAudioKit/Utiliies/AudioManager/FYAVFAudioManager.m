@@ -248,6 +248,32 @@ typedef NS_ENUM(NSInteger, FYAudioRecordSetupResult) {
     }
 }
 
+- (void)handleRouteChange:(NSNotification *)notification {
+    NSDictionary *userInfo = notification.userInfo;
+    AVAudioSessionRouteChangeReason routeChangeReason = (AVAudioSessionRouteChangeReason)userInfo[AVAudioSessionRouteChangeReasonKey];
+    switch (routeChangeReason) {
+        case AVAudioSessionRouteChangeReasonNewDeviceAvailable:
+        {
+            //handle new device available
+            NSLog(@"");
+            break;
+        }
+        case AVAudioSessionRouteChangeReasonOldDeviceUnavailable:
+        {
+            //handle old old removed
+            NSLog(@"");
+            break;
+        }
+        default:
+            break;
+    }
+}
+
+//handle secondary audio 
+- (void)handleSecondaryAudio:(NSNotification *)notification {
+    
+}
+
 #pragma mark - AVAudioRecordDelegate
 
 - (void)audioRecorderDidFinishRecording:(AVAudioRecorder *)recorder successfully:(BOOL)flag {
@@ -259,7 +285,8 @@ typedef NS_ENUM(NSInteger, FYAudioRecordSetupResult) {
 #pragma  mark - Add Notifications
 
 - (void)addObserve {
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleSecondaryAudio:) name:AVAudioSessionSilenceSecondaryAudioHintNotification object:[AVAudioSession sharedInstance]];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleRouteChange:) name:AVAudioSessionRouteChangeNotification object:[AVAudioSession sharedInstance]];
 }
 
 @end
