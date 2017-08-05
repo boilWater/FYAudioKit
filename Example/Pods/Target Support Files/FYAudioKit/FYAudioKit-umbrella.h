@@ -10,6 +10,8 @@
 #endif
 #endif
 
+#import "FYAudioRecorder.h"
+#import "FYMemoModel.h"
 
 FOUNDATION_EXPORT double FYAudioKitVersionNumber;
 FOUNDATION_EXPORT const unsigned char FYAudioKitVersionString[];

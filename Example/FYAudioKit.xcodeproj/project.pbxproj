@@ -22,7 +22,6 @@
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
-		AE1201B21F33033B00DABB91 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE1201B01F33029900DABB91 /* AVFoundation.framework */; };
 		AE13EC381F2987DD008201A2 /* FYMemoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AE13EC371F2987DD008201A2 /* FYMemoModel.m */; };
 		AE13EC3C1F29C101008201A2 /* FYAVFAudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AE13EC3B1F29C101008201A2 /* FYAVFAudioManager.m */; };
 		AE351A871F28345800EE1147 /* FYBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE351A861F28345800EE1147 /* FYBaseViewController.m */; };
@@ -30,6 +29,7 @@
 		AE351A8F1F283C1400EE1147 /* FYSoundCurveView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE351A8E1F283C1400EE1147 /* FYSoundCurveView.m */; };
 		AE351A941F28852C00EE1147 /* FYMemoTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE351A931F28852C00EE1147 /* FYMemoTableView.m */; };
 		AE351A971F28895100EE1147 /* FYRecordEditView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE351A961F28895100EE1147 /* FYRecordEditView.m */; };
+		AE9AC7EC1F36150100136458 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE1201B01F33029900DABB91 /* AVFoundation.framework */; };
 		AEA11E5D1F2743DB009C35FE /* FYAVFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AEA11E5C1F2743DB009C35FE /* FYAVFViewController.m */; };
 		AEA11E601F274401009C35FE /* FYATBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AEA11E5F1F274401009C35FE /* FYATBViewController.m */; };
 		B3FDE450C933006AD02961B8 /* Pods_FYAudioKit_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FDCF48379E1207FD1F84EE0 /* Pods_FYAudioKit_Tests.framework */; };
@@ -104,7 +104,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AE1201B21F33033B00DABB91 /* AVFoundation.framework in Frameworks */,
+				AE9AC7EC1F36150100136458 /* AVFoundation.framework in Frameworks */,
 				6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */,
 				6003F592195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F58E195388D20070C39A /* Foundation.framework in Frameworks */,

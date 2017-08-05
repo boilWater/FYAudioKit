@@ -16,13 +16,23 @@ typedef NS_ENUM(NSInteger, FYAudioRecordSetupResult) {
     FYAudioRecordSetupResultConfigurationFiled
 };
 
-@interface FYAVFAudioManager ()<AVAudioRecorderDelegate, AVAudioPlayerDelegate>
+typedef NS_ENUM(NSInteger, FYAudioHeadPhoneState) {
+    FYAudioHeadPhoneStateDefault, //state of head phone disconnected
+    FYAudioHeadPhoneStateConnected,
+    FYAudioHeadPhoneStateDisConnected
+};
+
+@interface FYAVFAudioManager ()<AVAudioRecorderDelegate, AVAudioPlayerDelegate>{
+//    BOOL headPhoneConnected;
+}
 
 @property (strong, nonatomic) AVAudioRecorder *recorder;
 @property (nonatomic) FYAudioRecordSetupResult recordSetupResult;
 
 @property (strong, nonatomic) AVAudioPlayer *player;
 @property (strong, nonatomic) FYAVFAudioManagerStopCompletionHandler completionHandler;
+
+@property (assign, nonatomic) FYAudioHeadPhoneState headPhoneState;
 
 @end
 
@@ -41,6 +51,7 @@ typedef NS_ENUM(NSInteger, FYAudioRecordSetupResult) {
 
 - (void)configuration {
     self.recordSetupResult = FYAudioRecordSetupResultSucess;
+    self.headPhoneState = FYAudioHeadPhoneStateDefault;
     NSString *tempDir = NSTemporaryDirectory();
     NSURL *fileUrl =[NSURL fileURLWithPath:[tempDir stringByAppendingPathComponent:@"fyaudiomemo.caf"]];
     NSDictionary *setting = @{AVFormatIDKey:@(kAudioFormatAppleIMA4),
@@ -251,16 +262,31 @@ typedef NS_ENUM(NSInteger, FYAudioRecordSetupResult) {
 - (void)handleRouteChange:(NSNotification *)notification {
     NSDictionary *userInfo = notification.userInfo;
     AVAudioSessionRouteChangeReason routeChangeReason = (AVAudioSessionRouteChangeReason)userInfo[AVAudioSessionRouteChangeReasonKey];
+    AVAudioSession *session = [AVAudioSession sharedInstance];
     switch (routeChangeReason) {
         case AVAudioSessionRouteChangeReasonNewDeviceAvailable:
         {
             //handle new device available
+            NSArray<AVAudioSessionPortDescription *> *outputs = session.currentRoute.outputs;
+            for (AVAudioSessionPortDescription *output in outputs) {
+                if ([output.portType isEqualToString: AVAudioSessionPortHeadphones]) {
+                    _headPhoneState = FYAudioHeadPhoneStateConnected;
+                    break;
+                }
+            }
             NSLog(@"");
             break;
         }
         case AVAudioSessionRouteChangeReasonOldDeviceUnavailable:
         {
             //handle old old removed
+            NSArray<AVAudioSessionPortDescription *> *outputs = session.currentRoute.outputs;
+            for (AVAudioSessionPortDescription *output in outputs) {
+                if ([output.portType isEqualToString:AVAudioSessionPortHeadphones]) {
+                    _headPhoneState = FYAudioHeadPhoneStateDisConnected;
+                    break;
+                }
+            }
             NSLog(@"");
             break;
         }
@@ -271,7 +297,20 @@ typedef NS_ENUM(NSInteger, FYAudioRecordSetupResult) {
 
 //handle secondary audio 
 - (void)handleSecondaryAudio:(NSNotification *)notification {
-    
+    NSDictionary *userInfo = notification.userInfo;
+    AVAudioSessionSilenceSecondaryAudioHintType secondaryAudioHintType = (AVAudioSessionSilenceSecondaryAudioHintType)userInfo[AVAudioSessionSilenceSecondaryAudioHintTypeKey];
+    switch (secondaryAudioHintType) {
+        case AVAudioSessionSilenceSecondaryAudioHintTypeBegin:
+        {
+            
+            break;
+        }
+        case AVAudioSessionSilenceSecondaryAudioHintTypeEnd:
+        {
+            
+            break;
+        }
+    }
 }
 
 #pragma mark - AVAudioRecordDelegate

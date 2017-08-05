@@ -18,5 +18,6 @@
   "platforms": {
     "ios": "8.0"
   },
-  "source_files": "FYAudioKit/Classes/**/*"
+  "source_files": "FYAudioKit/Classes/**/*",
+  "frameworks": "AVFoundation"
 }
