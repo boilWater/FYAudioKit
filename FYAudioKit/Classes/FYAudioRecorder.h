@@ -17,7 +17,7 @@ typedef void(^FYAudioRecorderErrorHandler) (NSError *error);
 
 @property (strong, nonatomic) NSString *formattedCurrentTime;
 
-- (instancetype)initWithURL:(NSURL *)url error:(NSError **)outError;
+- (instancetype)initWithURL:(NSURL *)url error:(FYAudioRecorderErrorHandler)failure;
 
 - (BOOL)start;
 
