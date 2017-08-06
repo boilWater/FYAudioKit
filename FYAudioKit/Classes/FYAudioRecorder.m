@@ -14,6 +14,12 @@ typedef NS_ENUM(NSInteger, FYAudioRecorderSetupResult) {
     FYAudioRecorderSetupResultConfigurationFiled
 };
 
+typedef NS_ENUM(NSInteger, FYAudioMicrophoneMode) {
+    FYAudioMicrophoneModeDefault,//default microphone built in iOS device
+    FYAudioMicrophoneModePhone,
+    FYAudioMicrophoneModeHead
+};
+
 typedef NS_ENUM(NSInteger, FYAudioHeadPhoneState) {
     FYAudioHeadPhoneStateDefault, //state of head phone disconnected
     FYAudioHeadPhoneStateConnected,
@@ -225,6 +231,7 @@ typedef NS_ENUM(NSInteger, FYAudioHeadPhoneState) {
 - (void)handleRouteChange:(NSNotification *)notification {
     NSDictionary *userInfo = notification.userInfo;
     AVAudioSessionRouteChangeReason routeChangeReason = (AVAudioSessionRouteChangeReason)userInfo[AVAudioSessionRouteChangeReasonKey];
+    FYAudioMicrophoneMode microphoneMode = FYAudioMicrophoneModeDefault;
     switch (routeChangeReason) {
         case AVAudioSessionRouteChangeReasonNewDeviceAvailable:
         {
@@ -233,6 +240,7 @@ typedef NS_ENUM(NSInteger, FYAudioHeadPhoneState) {
             for (AVAudioSessionPortDescription *output in outputs) {
                 if ([output.portType isEqualToString: AVAudioSessionPortHeadphones]) {
                     _headPhoneState = FYAudioHeadPhoneStateConnected;
+                    microphoneMode = FYAudioMicrophoneModeHead;
                 }
             }
             NSLog(@"");
@@ -245,6 +253,7 @@ typedef NS_ENUM(NSInteger, FYAudioHeadPhoneState) {
             for (AVAudioSessionPortDescription *output in outputs) {
                 if ([output.portType isEqualToString:AVAudioSessionPortHeadphones]) {
                     _headPhoneState = FYAudioHeadPhoneStateDisConnected;
+                    microphoneMode = FYAudioMicrophoneModePhone;
                 }
             }
             NSLog(@"");
@@ -256,6 +265,7 @@ typedef NS_ENUM(NSInteger, FYAudioHeadPhoneState) {
             break;
         }
     }
+    [self changeInputRouteWithMicrophoneMode:microphoneMode];
 }
 
 //handle secondary audio
@@ -273,6 +283,63 @@ typedef NS_ENUM(NSInteger, FYAudioHeadPhoneState) {
             
             break;
         }
+    }
+}
+
+- (void)changeInputRouteWithMicrophoneMode:(FYAudioMicrophoneMode)microphoneMode {
+    
+    NSError *audioRouteError = nil;
+    BOOL result = YES;
+    
+    NSArray<AVAudioSessionPortDescription *> *inputs = _session.availableInputs;
+    
+    AVAudioSessionPortDescription *builtInMicPort = nil;
+    AVAudioSessionDataSourceDescription *frontDataSource = nil;
+    switch (microphoneMode) {
+        case FYAudioMicrophoneModePhone:
+        {
+            for (AVAudioSessionPortDescription *port in inputs) {
+                if ([port.portType isEqualToString:AVAudioSessionPortBuiltInMic]) {
+                    builtInMicPort = port;
+                    break;
+                }
+            }
+            for (AVAudioSessionDataSourceDescription *source in builtInMicPort.dataSources) {
+                if ([source.orientation isEqualToString:AVAudioSessionOrientationBottom]) {
+                    frontDataSource = source;
+                    break;
+                }
+            }
+            if (frontDataSource) {
+                result = [builtInMicPort setPreferredDataSource:frontDataSource error:&audioRouteError];
+            }
+            if (!result) {
+                NSLog(@"Error : Audio session port set data source fail");
+                NSLog(@"Detail error : %@", audioRouteError);
+            }
+            break;
+        }
+        case FYAudioMicrophoneModeHead:
+        {
+            for (AVAudioSessionPortDescription *port in inputs) {
+                if ([port.portType isEqual:AVAudioSessionPortHeadphones]) {
+                    builtInMicPort = port;
+                    break;
+                }
+            }
+        }
+        default:
+        {
+            
+            break;
+        }
+    }
+    
+    audioRouteError = nil;
+    result = [_session setPreferredInput:builtInMicPort error:&audioRouteError];
+    if (!result) {
+        NSLog(@"Error : Audio session set port fail");
+        NSLog(@"Detail error : %@", audioRouteError);
     }
 }
 
