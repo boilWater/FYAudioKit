@@ -25,10 +25,6 @@ typedef void(^FYAudioRecorderErrorHandler) (NSError *error);
 
 - (void)stopWithCompletionHandler:(FYAudioRecorderStopCompletionHandler)completion;
 
-- (void)saveWithCompletionHandler:(FYAudioRecorderSaveCompletionHandler)completion failureHandler:(FYAudioRecorderErrorHandler)failure;
-
-
-
-
+- (void)saveWithAudioName:(NSString *)name CompletionHandler:(FYAudioRecorderSaveCompletionHandler)completion failureHandler:(FYAudioRecorderErrorHandler)failure;
 
 @end
