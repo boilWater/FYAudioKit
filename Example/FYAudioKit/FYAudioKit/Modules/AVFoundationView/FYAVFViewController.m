@@ -14,7 +14,6 @@ typedef NS_ENUM(NSInteger, FYAudioRecordMode) {
 
 #import "FYAVFViewController.h"
 #import "FYAVFAudioManager.h"
-#import "FYAudioRecorder.h"
 #import "FYMemoModel.h"
 
 @interface FYAVFViewController ()
@@ -30,7 +29,7 @@ typedef NS_ENUM(NSInteger, FYAudioRecordMode) {
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self initParamters];
+    [self initParamter];
     [self configurationClickedEvent];
 }
 
@@ -40,7 +39,7 @@ typedef NS_ENUM(NSInteger, FYAudioRecordMode) {
 
 #pragma mark -
 
-- (void)initParamters {
+- (void)initParamter {
     self.recordMode = FYAudioRecordModeNot;
     _audioManager = [[FYAVFAudioManager alloc] init];
 }

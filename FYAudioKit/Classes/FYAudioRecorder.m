@@ -9,7 +9,7 @@
 #import "FYMemoModel.h"
 
 typedef NS_ENUM(NSInteger, FYAudioRecorderSetupResult) {
-    FYAudioRecorderSetupResultSucess,
+    FYAudioRecorderSetupResultSucess,//configuration recorder category
     FYAudioRecorderSetupResultNotAuthorized,
     FYAudioRecorderSetupResultConfigurationFiled
 };
@@ -224,8 +224,22 @@ typedef NS_ENUM(NSInteger, FYAudioHeadPhoneState) {
 #pragma mark - Add Notification and Observer
 
 - (void)addNotifications {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleInterruption:) name:AVAudioSessionInterruptionNotification object:_session];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleSecondaryAudio:) name:AVAudioSessionSilenceSecondaryAudioHintNotification object:[AVAudioSession sharedInstance]];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleRouteChange:) name:AVAudioSessionRouteChangeNotification object:[AVAudioSession sharedInstance]];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleMediaServicesWereResetNotification:) name:AVAudioSessionMediaServicesWereResetNotification object:_session];
+}
+
+- (void)handleInterruption:(NSNotification *)notification {
+    
+    
+    if ([self.delegate respondsToSelector:@selector(recorderWasInterrupted)]) {
+        [self.delegate recorderWasInterrupted];
+    }
+}
+
+- (void)handleMediaServicesWereResetNotification:(NSNotification *)notification {
+    
 }
 
 - (void)handleRouteChange:(NSNotification *)notification {

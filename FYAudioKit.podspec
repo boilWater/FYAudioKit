@@ -37,6 +37,6 @@ TODO: Add long description of the pod here.
   # }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
-    s.frameworks = 'AVFoundation', 'AVFAudio'
+    s.frameworks = 'AVFoundation'
   # s.dependency 'AFNetworking', '~> 2.3'
 end
