@@ -14,6 +14,7 @@ typedef NS_ENUM(NSInteger, FYAudioRecordMode) {
 
 #import "FYAVFViewController.h"
 #import "FYAVFAudioManager.h"
+#import "FYAudioRecorder.h"
 #import "FYMemoModel.h"
 
 @interface FYAVFViewController ()

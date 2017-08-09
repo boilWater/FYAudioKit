@@ -230,7 +230,7 @@ typedef NS_ENUM(NSInteger, FYAudioHeadPhoneState) {
 
 - (void)handleRouteChange:(NSNotification *)notification {
     NSDictionary *userInfo = notification.userInfo;
-    AVAudioSessionRouteChangeReason routeChangeReason = (AVAudioSessionRouteChangeReason)userInfo[AVAudioSessionRouteChangeReasonKey];
+    AVAudioSessionRouteChangeReason routeChangeReason = [userInfo[AVAudioSessionRouteChangeReasonKey] unsignedIntegerValue];
     FYAudioMicrophoneMode microphoneMode = FYAudioMicrophoneModeDefault;
     switch (routeChangeReason) {
         case AVAudioSessionRouteChangeReasonNewDeviceAvailable:
@@ -271,7 +271,7 @@ typedef NS_ENUM(NSInteger, FYAudioHeadPhoneState) {
 //handle secondary audio
 - (void)handleSecondaryAudio:(NSNotification *)notification {
     NSDictionary *userInfo = notification.userInfo;
-    AVAudioSessionSilenceSecondaryAudioHintType secondaryAudioHintType = (AVAudioSessionSilenceSecondaryAudioHintType)userInfo[AVAudioSessionSilenceSecondaryAudioHintTypeKey];
+    AVAudioSessionSilenceSecondaryAudioHintType secondaryAudioHintType = [userInfo[AVAudioSessionSilenceSecondaryAudioHintTypeKey] unsignedIntegerValue];
     switch (secondaryAudioHintType) {
         case AVAudioSessionSilenceSecondaryAudioHintTypeBegin:
         {
