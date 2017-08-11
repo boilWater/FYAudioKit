@@ -6,6 +6,7 @@
 //
 
 #import "FYAudioRecorder.h"
+#import <AVFoundation/AVFoundation.h>
 #import "FYMemoModel.h"
 
 typedef NS_ENUM(NSInteger, FYAudioRecorderSetupResult) {
@@ -27,9 +28,6 @@ typedef NS_ENUM(NSInteger, FYAudioHeadPhoneState) {
 };
 
 @interface FYAudioRecorder ()<AVAudioRecorderDelegate>
-
-//AudioSession
-@property (strong, nonatomic) AVAudioSession *session;
 
 //Recoder
 @property (strong, nonatomic) AVAudioRecorder *recorder;
@@ -71,6 +69,7 @@ typedef NS_ENUM(NSInteger, FYAudioHeadPhoneState) {
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:AVAudioSessionSilenceSecondaryAudioHintNotification object:[AVAudioSession sharedInstance]];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:AVAudioSessionRouteChangeNotification object:[AVAudioSession sharedInstance]];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:AVAudioSessionMediaServicesWereResetNotification object:[AVAudioSession sharedInstance]];
 }
 
 #pragma mark - Public Methods
@@ -100,17 +99,18 @@ typedef NS_ENUM(NSInteger, FYAudioHeadPhoneState) {
 }
 
 - (void)saveWithAudioName:(NSString *)name
-                CompletionHandler:(FYAudioRecorderSaveCompletionHandler)completion
+                completionHandler:(FYAudioRecorderSaveCompletionHandler)completion
                    failureHandler:(FYAudioRecorderErrorHandler)failure {
     NSError *error = nil;
     NSURL *srcURL = [self getAudioRecoderURL];
-    NSURL *urlSaveAudioRecord = self.urlSavedAudio;
-    if (!urlSaveAudioRecord) {
-        urlSaveAudioRecord = [self getURLSavedAudioWithAudioName:name];
+    NSURL *saveURL = self.urlSavedAudio;
+    if (!saveURL) {
+        saveURL = [self getURLSavedAudioWithAudioName:name];
     }
-    BOOL success = [[NSFileManager defaultManager] copyItemAtURL:srcURL toURL:urlSaveAudioRecord error:&error];
+    
+    BOOL success = [[NSFileManager defaultManager] copyItemAtURL:srcURL toURL:saveURL error:&error];
     if (success && error == nil) {
-        completion(YES, [FYMemoModel memoWithTitle:name url:urlSaveAudioRecord]);
+        completion(YES, [FYMemoModel memoWithTitle:name url:saveURL]);
         [self.recorder prepareToRecord];
     }else {
         failure(error);
@@ -133,10 +133,10 @@ typedef NS_ENUM(NSInteger, FYAudioHeadPhoneState) {
     self.recorderSetupResult = FYAudioRecorderSetupResultSucess;
     self.headPhoneState = FYAudioHeadPhoneStateDefault;
     
-    _session = [AVAudioSession sharedInstance];
+    AVAudioSession *session = [AVAudioSession sharedInstance];
     __block AVAudioSessionRecordPermission recordPermission;
-    [_session requestRecordPermission:^(BOOL granted) {
-        recordPermission = _session.recordPermission;
+    [session requestRecordPermission:^(BOOL granted) {
+        recordPermission = session.recordPermission;
         switch (recordPermission) {
             case AVAudioSessionRecordPermissionDenied:
             {
@@ -169,26 +169,32 @@ typedef NS_ENUM(NSInteger, FYAudioHeadPhoneState) {
             return ;
         }
     }];
-    NSError *error = nil;
     if (FYAudioRecorderSetupResultSucess == self.recorderSetupResult) {
-        NSDictionary *settings = @{AVFormatIDKey:@(kAudioFormatAppleIMA4),
-                                  AVSampleRateKey:@44100.0f,
-                                  AVNumberOfChannelsKey:@1,
-                                  AVEncoderBitDepthHintKey:@16,
-                                  AVEncoderAudioQualityKey:@(AVAudioQualityHigh)
-                                  };
-        NSURL *urlAudioRecoder = [self getAudioRecoderURL];
-        self.recorder = [[AVAudioRecorder alloc] initWithURL:urlAudioRecoder settings:settings error:&error];
-        if (!error) {
-            self.recorderSetupResult = FYAudioRecorderSetupResultConfigurationFiled;
+        [self configurationRecorderWithError:^(NSError *error) {
             failure(error);
-            return;
-        }
-        if (self.recorder && error == nil) {
-            self.recorder.delegate = self;
-            self.recorder.meteringEnabled = YES;
-            [self.recorder prepareToRecord];
-        }
+        }];
+    }
+}
+
+- (void)configurationRecorderWithError:(FYAudioRecorderErrorHandler)failure {
+    NSError *error = nil;
+    NSDictionary *settings = @{AVFormatIDKey:@(kAudioFormatAppleIMA4),
+                               AVSampleRateKey:@44100.0f,
+                               AVNumberOfChannelsKey:@1,
+                               AVEncoderBitDepthHintKey:@16,
+                               AVEncoderAudioQualityKey:@(AVAudioQualityHigh)
+                               };
+    NSURL *urlAudioRecoder = [self getAudioRecoderURL];
+    self.recorder = [[AVAudioRecorder alloc] initWithURL:urlAudioRecoder settings:settings error:&error];
+    if (!error) {
+        self.recorderSetupResult = FYAudioRecorderSetupResultConfigurationFiled;
+        failure(error);
+        return;
+    }
+    if (self.recorder && error == nil) {
+        self.recorder.delegate = self;
+        self.recorder.meteringEnabled = YES;
+        [self.recorder prepareToRecord];
     }
 }
 
@@ -224,33 +230,50 @@ typedef NS_ENUM(NSInteger, FYAudioHeadPhoneState) {
 #pragma mark - Add Notification and Observer
 
 - (void)addNotifications {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleInterruption:) name:AVAudioSessionInterruptionNotification object:_session];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleSecondaryAudio:) name:AVAudioSessionSilenceSecondaryAudioHintNotification object:[AVAudioSession sharedInstance]];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleInterruption:) name:AVAudioSessionInterruptionNotification object:[AVAudioSession sharedInstance]];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleRouteChange:) name:AVAudioSessionRouteChangeNotification object:[AVAudioSession sharedInstance]];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleMediaServicesWereResetNotification:) name:AVAudioSessionMediaServicesWereResetNotification object:_session];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleMediaServicesWereResetNotification:) name:AVAudioSessionMediaServicesWereResetNotification object:[AVAudioSession sharedInstance]];
 }
 
 - (void)handleInterruption:(NSNotification *)notification {
-    
-    
-    if ([self.delegate respondsToSelector:@selector(recorderWasInterrupted)]) {
-        [self.delegate recorderWasInterrupted];
+    NSDictionary *userInfo = notification.userInfo;
+    AVAudioSessionInterruptionType interruptionType = [[userInfo objectForKey:AVAudioSessionInterruptionTypeKey] unsignedIntegerValue];
+    switch (interruptionType) {
+        case AVAudioSessionInterruptionTypeBegan:
+        {
+            if ([self.delegate respondsToSelector:@selector(beginInterruption)]) {
+                [self.delegate beginInterruption];
+            }
+            break;
+        }
+        case AVAudioSessionInterruptionTypeEnded:
+        {
+            if ([self.delegate respondsToSelector:@selector(endInterruption)]) {
+                [self.delegate endInterruption];
+            }
+            break;
+        }
     }
 }
 
 - (void)handleMediaServicesWereResetNotification:(NSNotification *)notification {
+    [self configurationWithError:^(NSError *error) {
+        [self addNotifications];
+    }];
     
+    if ([self.delegate respondsToSelector:@selector(hasRestarted)]) {
+        [self.delegate hasRestarted];
+    }
 }
 
 - (void)handleRouteChange:(NSNotification *)notification {
-    NSDictionary *userInfo = notification.userInfo;
-    AVAudioSessionRouteChangeReason routeChangeReason = [userInfo[AVAudioSessionRouteChangeReasonKey] unsignedIntegerValue];
+    AVAudioSessionRouteChangeReason routeChangeReason = [notification.userInfo[AVAudioSessionRouteChangeReasonKey] unsignedIntegerValue];
     FYAudioMicrophoneMode microphoneMode = FYAudioMicrophoneModeDefault;
+    NSArray<AVAudioSessionPortDescription *> *outputs = [AVAudioSession sharedInstance].currentRoute.outputs;
     switch (routeChangeReason) {
         case AVAudioSessionRouteChangeReasonNewDeviceAvailable:
         {
             //handle new device available
-            NSArray<AVAudioSessionPortDescription *> *outputs = _session.currentRoute.outputs;
             for (AVAudioSessionPortDescription *output in outputs) {
                 if ([output.portType isEqualToString: AVAudioSessionPortHeadphones]) {
                     _headPhoneState = FYAudioHeadPhoneStateConnected;
@@ -263,7 +286,6 @@ typedef NS_ENUM(NSInteger, FYAudioHeadPhoneState) {
         case AVAudioSessionRouteChangeReasonOldDeviceUnavailable:
         {
             //handle old old removed
-            NSArray<AVAudioSessionPortDescription *> *outputs = _session.currentRoute.outputs;
             for (AVAudioSessionPortDescription *output in outputs) {
                 if ([output.portType isEqualToString:AVAudioSessionPortHeadphones]) {
                     _headPhoneState = FYAudioHeadPhoneStateDisConnected;
@@ -273,39 +295,34 @@ typedef NS_ENUM(NSInteger, FYAudioHeadPhoneState) {
             NSLog(@"");
             break;
         }
+        case AVAudioSessionRouteChangeReasonWakeFromSleep:
+        {
+            if ([self.delegate respondsToSelector:@selector(recorderWakeFormSleep)]) {
+                [self.delegate recorderWakeFormSleep];
+            }
+            break;
+        }
+        case AVAudioSessionRouteChangeReasonRouteConfigurationChange:
+        {
+            if ([self.delegate respondsToSelector:@selector(configurationHasChanged)]) {
+                [self.delegate configurationHasChanged];
+            }
+            break;
+        }
         default:
         {
-            
             break;
         }
     }
     [self changeInputRouteWithMicrophoneMode:microphoneMode];
 }
 
-//handle secondary audio
-- (void)handleSecondaryAudio:(NSNotification *)notification {
-    NSDictionary *userInfo = notification.userInfo;
-    AVAudioSessionSilenceSecondaryAudioHintType secondaryAudioHintType = [userInfo[AVAudioSessionSilenceSecondaryAudioHintTypeKey] unsignedIntegerValue];
-    switch (secondaryAudioHintType) {
-        case AVAudioSessionSilenceSecondaryAudioHintTypeBegin:
-        {
-            
-            break;
-        }
-        case AVAudioSessionSilenceSecondaryAudioHintTypeEnd:
-        {
-            
-            break;
-        }
-    }
-}
-
 - (void)changeInputRouteWithMicrophoneMode:(FYAudioMicrophoneMode)microphoneMode {
     
     NSError *audioRouteError = nil;
     BOOL result = YES;
-    
-    NSArray<AVAudioSessionPortDescription *> *inputs = _session.availableInputs;
+    AVAudioSession *session = [AVAudioSession sharedInstance];
+    NSArray<AVAudioSessionPortDescription *> *inputs = session.availableInputs;
     
     AVAudioSessionPortDescription *builtInMicPort = nil;
     AVAudioSessionDataSourceDescription *frontDataSource = nil;
@@ -348,9 +365,8 @@ typedef NS_ENUM(NSInteger, FYAudioHeadPhoneState) {
             break;
         }
     }
-    
     audioRouteError = nil;
-    result = [_session setPreferredInput:builtInMicPort error:&audioRouteError];
+    result = [session setPreferredInput:builtInMicPort error:&audioRouteError];
     if (!result) {
         NSLog(@"Error : Audio session set port fail");
         NSLog(@"Detail error : %@", audioRouteError);

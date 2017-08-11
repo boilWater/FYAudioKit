@@ -7,13 +7,16 @@
 
 @class FYMemoModel;
 
-#import <AVFoundation/AVFAudio.h>
+#import <Foundation/Foundation.h>
 
 @protocol FYAudioRecorderDelegate<NSObject>
 
-- (void)recorderWasInterrupted;
-- (void)recorderHasRestarted;
-- (void)recorderConfigurationHasChanged;
+@optional
+- (void)beginInterruption;
+- (void)endInterruption;
+- (void)hasRestarted;
+- (void)configurationHasChanged;
+- (void)recorderWakeFormSleep;
 
 @end
 
@@ -21,9 +24,9 @@ typedef void(^FYAudioRecorderStopCompletionHandler) (BOOL result);
 typedef void(^FYAudioRecorderSaveCompletionHandler) (BOOL result, FYMemoModel *memoModel);
 typedef void(^FYAudioRecorderErrorHandler) (NSError *error);
 
-@interface FYAudioRecorder : AVAudioRecorder
+@interface FYAudioRecorder : NSObject
 
-@property (weak) id<FYAudioRecorderDelegate> delegate;
+@property (weak, nonatomic) id<FYAudioRecorderDelegate> delegate;
 @property (strong, nonatomic) NSString *formattedCurrentTime;
 
 - (instancetype)initWithURL:(NSURL *)url error:(FYAudioRecorderErrorHandler)failure;
@@ -34,6 +37,6 @@ typedef void(^FYAudioRecorderErrorHandler) (NSError *error);
 
 - (void)stopWithCompletionHandler:(FYAudioRecorderStopCompletionHandler)completion;
 
-- (void)saveWithAudioName:(NSString *)name CompletionHandler:(FYAudioRecorderSaveCompletionHandler)completion failureHandler:(FYAudioRecorderErrorHandler)failure;
+- (void)saveWithAudioName:(NSString *)name completionHandler:(FYAudioRecorderSaveCompletionHandler)completion failureHandler:(FYAudioRecorderErrorHandler)failure;
 
 @end
